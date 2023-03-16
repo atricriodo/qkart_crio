@@ -1,0 +1,1 @@
+python assesment/qkartAssessment.py filtered_logs.json assesment/QKART_ASSESSMENT_INSTRUCTIONS.json
