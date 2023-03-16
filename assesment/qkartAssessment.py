@@ -24,7 +24,8 @@ def evaluator(logical_unit,start_point):
         "logical_unit": logical_unit['LU'],
         "description": logical_unit['LU_description'],
         "hint": logical_unit['hint'],
-        "passed": True 
+        "passed": True ,
+        "total_points": 0
     }
     lookup = logical_unit['lookup']
     lu_start = True
@@ -50,30 +51,68 @@ def evaluator(logical_unit,start_point):
             # Check if log matches validation criteria
             for val in instruction['validations']:
                 if log.get(val["object_notation"]):
-                    if not any([match.lower() in log[val['object_notation']].lower() for match in val['expected_value']]):
-                        flag = False
-                        break
+                    if val['operator'] == 'not_contains':
+                        if any([match.lower() in log[val['object_notation']].lower() for match in val['expected_value']]):
+                            flag = False
+                            break
+                    else:
+                        if not any([match.lower() in log[val['object_notation']].lower() for match in val['expected_value']]):
+                            flag = False
+                            break
             # Test case passed
             if flag:
                 test_case["Passed"] = True
                 test_case["Points"] = 1
                 points += 1
                 # Update last "PASS" index
-                last_pass_index = i + 1
+                last_pass_index = i +1
+                # print(json.dumps(log,indent=4))
+                # print(json.dumps(test_case, indent=4))
                 break
         # Add test case to list
         test_cases.append(test_case)
     if not all([test['Passed'] for test in test_cases]):
         result['failure_analysis'] = test_cases
         result['passed'] = False
+    result['total_points'] = points
     return result, last_pass_index
+
+
+def parse_results(original_dict):
+    # Create a new dictionary to store the filtered data
+    filtered_dict = {}  
+    flag = True
+
+    # Loop through each item in the original dictionary
+    for item in original_dict:
+        
+        # If the logical unit is not already in the filtered dictionary, add it
+        if item['logical_unit'] not in filtered_dict:
+            filtered_dict[item['logical_unit']] = item
+            flag = True
+            
+        # If the logical unit is already in the filtered dictionary, update it with the higher score or passed value
+        elif flag:
+            existing_item = filtered_dict[item['logical_unit']]
+            if item['passed'] == True:
+                existing_item['passed'] = True
+                filtered_dict[item['logical_unit']] = item
+                flag = False
+            else:
+                existing_points = existing_item['total_points']
+                new_points = item['total_points']
+                if new_points > existing_points:
+                    existing_item['total_points'] = new_points
+                    existing_item['failure_analysis'] = item['failure_analysis']
+                filtered_dict[item['logical_unit']] = existing_item
+    return filtered_dict
 
 def break_into_lu():
     # Iterate over assessment instructions
     results =[]
     result = None
     for logical_unit in assessment_instructions:
-        if logical_unit['repeat']:
+        if logical_unit['is_enabled']:
             start_point = 0
             while True:
                 result, end_point = evaluator(logical_unit, start_point)
@@ -81,9 +120,7 @@ def break_into_lu():
                 if(start_point==end_point):
                     break
                 start_point = end_point
-        else:
-            result, __ = evaluator(logical_unit)
-        
-    print(json.dumps(results[:-1], indent=4))
+    final = parse_results(results)
+    print(json.dumps(final, indent=4))
     
 break_into_lu()

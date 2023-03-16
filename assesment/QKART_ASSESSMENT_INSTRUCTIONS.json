@@ -1,149 +1,346 @@
 [
     {
-        "repeat":true,
-        "LU":"register_and_login",
-        "LU_description":"Registering and logging in before each test case",
-        "is_enabled":true,
-        "hint":"Are you registering and logging in successfully before each test case?",
-        "lookup":10,
+        "LU": "register_and_login",
+        "LU_description": "Registering and logging in before each test case",
+        "is_enabled": true,
+        "hint": "Are you registering and logging in successfully before each test case?",
+        "lookup": 10,
         "instruction_set": [
-        {
-            "description": "Ensure register page is opened",
-            "validations": [
             {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": "Navigate"
+                "description": "Ensure register page is opened",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": "Navigate"
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "/register"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the url /register is visited",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Ensure that the register page is visited to perform registration"
             },
             {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": ["/register"]
-            }
-            ],
-            "error_out": "Testcase01: Ensure that the url /register is visited",
-            "is_enabled": true,
-            "optional": false,
-            "hint": "Ensure that the register page is visited to perform registration"
-        },
-        {
-            "description": "Ensure that username-box is found",
-            "validations": [
-            {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": ["FindElement"]
+                "description": "Ensure that username-box is found",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "FindElement"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "username",
+                            "MuiInputBase-input",
+                            "css-1x5jdmq",
+                            "MuiOutlinedInput-input",
+                            "//input"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the username-box is found",
+                "is_enabled": true,
+                "optional": true,
+                "hint": "Is the username-box being found?"
             },
             {
-                "object_notation": "COMMAND",
-                "operator":"contains",
-                "expected_value":["username","MuiInputBase-input","css-1x5jdmq","MuiOutlinedInput-input","//input"]
-            }
-            ],
-            "error_out": "Testcase01: Ensure that the username-box is found",
-            "is_enabled": true,
-            "optional":true,
-            "hint": "Is the username-box being found?"
-        },
-        {
-            "description": "Ensure that you are sending keys to the username-box",
-            "validations": [
-            {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": ["TypeElement"]
-            }
-            ],
-            "error_out": "Testcase01: Ensure that you are sending keys to the username-box",
-            "is_enabled": true,
-            "optional":false,
-            "hint": "Is the username being typed out?"
-        },
-        {
-            "description": "Ensure that password-box is found",
-            "validations": [
-            {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": ["FindElement"]
+                "description": "Ensure that you are sending keys to the username-box",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "TypeElement"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that you are sending keys to the username-box",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the username being typed out?"
             },
             {
-                "object_notation": "COMMAND",
-                "operator":"contains",
-                "expected_value":["password","MuiOutlinedInput-input", "MuiInputBase-input", "css-1x5jdmq","//input"]
-            }
-            ],
-            "error_out": "Testcase01: Ensure that the password-box is found",
-            "is_enabled": true,
-            "optional":true,
-            "hint": "Is the password-box being found?"
-        },
-        {
-            "description": "Ensure that you are sending keys to the password-box",
-            "validations": [
-            {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": ["TypeElement"]
-            }
-            ],
-            "error_out": "Testcase01: Ensure that you are sending keys to the password-box",
-            "is_enabled": true,
-            "optional":true,
-            "hint": "Is the password being typed out?"
-        },
-        {
-            "description": "Ensure that confirm-password-box is found",
-            "validations": [
-            {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": "FindElement"
+                "description": "Ensure that password-box is found",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "FindElement"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "password",
+                            "MuiOutlinedInput-input",
+                            "MuiInputBase-input",
+                            "css-1x5jdmq",
+                            "//input"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the password-box is found",
+                "is_enabled": true,
+                "optional": true,
+                "hint": "Is the password-box being found?"
             },
             {
-                "object_notation": "COMMAND",
-                "operator":"contains",
-                "expected_value":["confirmPassword","confirm", "MuiOutlinedInput-input","MuiInputBase-input","css-1x5jdmq","//input"]
-            }
-            ],
-            "error_out": "Testcase01: Ensure that the confirm-password-box is found",
-            "is_enabled": true,
-            "optional":false,
-            "hint": "Is the confirm-password-box being found?"
-        },
-        {
-            "description": "Ensure that you are sending keys to the confirm-password-box",
-            "validations": [
-            {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": ["TypeElement"]
-            }
-            ],
-            "error_out": "Testcase01: Ensure that you are sending keys to the confirm-password-box",
-            "is_enabled": true,
-            "optional":false,
-            "hint": "Is the confirm-password being typed out?"
-        },
-        {
-            "description": "Testcase 01: Verify redirects to '/login' page on successful registration",
-            "validations": [
-            {
-                "object_notation": "COMMAND",
-                "operator": "contains",
-                "expected_value": "GetUrl"
+                "description": "Ensure that you are sending keys to the password-box",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "TypeElement"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that you are sending keys to the password-box",
+                "is_enabled": true,
+                "optional": true,
+                "hint": "Is the password being typed out?"
             },
             {
-                "object_notation": "RESPONSE",
-                "operator": "contains",
-                "expected_value": ["/login"]
+                "description": "Ensure that confirm-password-box is found",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": "FindElement"
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "confirmPassword",
+                            "confirm",
+                            "MuiOutlinedInput-input",
+                            "MuiInputBase-input",
+                            "css-1x5jdmq",
+                            "//input"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the confirm-password-box is found",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the confirm-password-box being found?"
+            },
+            {
+                "description": "Ensure that you are sending keys to the confirm-password-box",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "TypeElement"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that you are sending keys to the confirm-password-box",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the confirm-password being typed out?"
+            },
+            {
+                "description": "Testcase 01: Verify redirects to '/login' page on successful registration",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": "GetUrl"
+                    },
+                    {
+                        "object_notation": "RESPONSE",
+                        "operator": "contains",
+                        "expected_value": [
+                            "/login"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the registration is successful and redirects to '/login'",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Are we checking if the url changes to /login after performing a registration?"
             }
-            ],
-            "error_out": "Testcase01: Ensure that the registration is successful and redirects to '/login'",
-            "is_enabled": true,
-            "optional":false,
-            "hint": "Are we checking if the url changes to /login after performing a registration?"
-        }
+        ]
+    },
+    {
+        "LU": "search_yonex_gesundheit_and_confirm",
+        "LU_description": "Searching for Yonex and Gesundheit and confirming results",
+        "is_enabled": true,
+        "hint": "Are you searching for yonex/gesundheit and confirming the results?",
+        "lookup": 10,
+        "instruction_set": [
+            {
+                "description": "Ensure home page is opened",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": "Navigate"
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "qkart"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "not_contains",
+                        "expected_value": [
+                            "/register",
+                            "/login"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the homepage url is visited",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Ensure that the home page is visited"
+            },
+            {
+                "description": "Ensure that search-box is found",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "FindElement"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "//input",
+                            "search",
+                            "MuiOutlinedInput-input",
+                            "MuiInputBase-input",
+                            "MuiInputBase-inputSizeSmall",
+                            "MuiInputBase-inputAdornedEnd",
+                            "css-b52kj1"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the search-box is found",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the search-box being found?"
+            },
+            {
+                "description": "Ensure that you are typing 'YONEX' to the search-box",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "TypeElement"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "yonex"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that you are sending YONEX to search-box",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the word YONEX being typed out?"
+            },
+            {
+                "description": "Ensure that YONEX is found as a result",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "GetElementText"
+                        ]
+                    },
+                    {
+                        "object_notation": "RESPONSE",
+                        "operator": "contains",
+                        "expected_value": [
+                            "yonex"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that YONEX product is found",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the YONEX product being found?"
+            },
+            {
+                "description": "Ensure that search-box is found",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "FindElement"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "//input",
+                            "search",
+                            "MuiOutlinedInput-input",
+                            "MuiInputBase-input",
+                            "MuiInputBase-inputSizeSmall",
+                            "MuiInputBase-inputAdornedEnd",
+                            "css-b52kj1"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the search-box is found",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the search-box being found?"
+            },
+            {
+                "description": "Ensure that you are typing 'GESUNDHEIT' to the search-box",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "TypeElement"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "Gesundheit"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that you are sending GESUNDHEIT to search-box",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the word gesundheit being typed out?"
+            }
         ]
     }
 ]
