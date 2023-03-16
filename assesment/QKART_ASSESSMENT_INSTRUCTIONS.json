@@ -342,5 +342,141 @@
                 "hint": "Is the word gesundheit being typed out?"
             }
         ]
+    },
+    {
+        "LU": "verify_size_chart_contents",
+        "LU_description": "Verifying the Conetents of the Size Chart",
+        "is_enabled": true,
+        "hint": "Are you verifying the contents of the size chart?",
+        "lookup": 10,
+        "instruction_set": [
+            {
+                "description": "Ensure home page is opened",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": ["Navigate"]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "qkart"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "not_contains",
+                        "expected_value": [
+                            "/register",
+                            "/login"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the homepage url is visited",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Ensure that the home page is visited"
+            },
+            {
+                "description": "Ensure that search-box is found",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "FindElement"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "//input",
+                            "search",
+                            "MuiOutlinedInput-input",
+                            "MuiInputBase-input",
+                            "MuiInputBase-inputSizeSmall",
+                            "MuiInputBase-inputAdornedEnd",
+                            "css-b52kj1"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the search-box is found",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the search-box being found?"
+            },
+            {
+                "description": "Ensure that you are typing 'shoes' to the search-box",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "TypeElement"
+                        ]
+                    },
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "shoes"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that you are sending shoes to search-box",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the word shoes being typed out?"
+            },
+            {
+                "description": "Ensure that size chart link exists",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "GetElementText"
+                        ]
+                    },
+                    {
+                        "object_notation": "RESPONSE",
+                        "operator": "contains",
+                        "expected_value": [
+                            "size chart"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that size chart link exists",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the size chart link verified?"
+            },
+            {
+                "description": "Ensure that header is verified",
+                "validations": [
+                    {
+                        "object_notation": "COMMAND",
+                        "operator": "contains",
+                        "expected_value": [
+                            "GetElementText"
+                        ]
+                    },
+                    {
+                        "object_notation": "RESPONSE",
+                        "operator": "contains",
+                        "expected_value": [
+                            "UK/INDIA"
+                        ]
+                    }
+                ],
+                "error_out": "Ensure that the table header if verified",
+                "is_enabled": true,
+                "optional": false,
+                "hint": "Is the table header verified?"
+            }
+        ]
     }
 ]
